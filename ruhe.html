@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Kurz durchatmen</title>
+  <style>
+:root{
+  --bg:#f7f5f1;
+  --card:#ffffff;
+  --text:#252a2f;
+  --muted:#6b7280;
+  --accent:#3f6f8c;
+  --accent-soft:#e8f0f5;
+  --sage:#e6efe9;
+  --sand:#efe7db;
+  --border:#dde3e8;
+  --button:#2f5f7b;
+  --button-text:#ffffff;
+}
+*{box-sizing:border-box}
+html,body{margin:0;padding:0}
+body{
+  font-family: Arial, Helvetica, sans-serif;
+  background: linear-gradient(180deg, var(--bg) 0%, #f2f4f6 100%);
+  color:var(--text);
+  line-height:1.5;
+}
+.wrap{
+  min-height:100vh;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  padding:24px;
+}
+.card{
+  width:100%;
+  max-width:520px;
+  background:var(--card);
+  border:1px solid var(--border);
+  border-radius:24px;
+  box-shadow:0 10px 30px rgba(0,0,0,0.06);
+  overflow:hidden;
+}
+.topbar{height:10px;background:var(--accent);}
+.inner{padding:28px 24px 22px 24px}
+.badge{
+  display:inline-block;
+  background:var(--accent-soft);
+  color:var(--accent);
+  font-weight:700;
+  font-size:12px;
+  letter-spacing:.04em;
+  text-transform:uppercase;
+  padding:8px 10px;
+  border-radius:999px;
+  margin-bottom:16px;
+}
+h1{
+  margin:0 0 8px 0;
+  font-size:30px;
+  line-height:1.15;
+}
+.sub{
+  color:var(--muted);
+  font-size:16px;
+  margin-bottom:18px;
+}
+.duration{
+  display:inline-block;
+  padding:8px 12px;
+  background:#f7fafc;
+  border:1px solid var(--border);
+  border-radius:12px;
+  font-size:14px;
+  color:var(--muted);
+  margin-bottom:20px;
+}
+.section{
+  background:#fafafa;
+  border:1px solid var(--border);
+  border-radius:18px;
+  padding:16px;
+  margin:14px 0;
+}
+.section h2{
+  margin:0 0 10px 0;
+  font-size:18px;
+  color:var(--accent);
+}
+ol,ul{
+  margin:10px 0 0 20px;
+  padding:0;
+}
+li{margin:8px 0}
+.prompt{
+  font-size:18px;
+  font-weight:700;
+  margin:10px 0;
+}
+.note{
+  margin-top:14px;
+  padding:14px 16px;
+  border-radius:16px;
+  background:var(--sand);
+  font-size:15px;
+}
+.actions{
+  display:flex;
+  flex-direction:column;
+  gap:12px;
+  margin-top:18px;
+}
+button, .secondary{
+  appearance:none;
+  border:none;
+  width:100%;
+  border-radius:16px;
+  padding:15px 16px;
+  font-size:16px;
+  font-weight:700;
+  cursor:pointer;
+}
+button{
+  background:var(--button);
+  color:var(--button-text);
+}
+.secondary{
+  background:#fff;
+  color:var(--accent);
+  border:1px solid var(--border);
+  text-align:center;
+  text-decoration:none;
+}
+.footer{
+  text-align:center;
+  color:var(--muted);
+  font-size:13px;
+  margin-top:18px;
+}
+.small{
+  font-size:14px;
+  color:var(--muted);
+}
+.choice{
+  display:block;
+  width:100%;
+  text-align:left;
+  background:#fff;
+  color:var(--text);
+  border:1px solid var(--border);
+  margin:10px 0;
+  font-weight:600;
+}
+.choice.active{
+  border-color:var(--accent);
+  background:var(--accent-soft);
+}
+hr{
+  border:none;
+  border-top:1px solid var(--border);
+  margin:16px 0;
+}
+textarea{
+  width:100%;
+  margin-top:12px;
+  border:1px solid var(--border);
+  border-radius:14px;
+  padding:12px;
+  font:inherit;
+  resize:vertical;
+}
+@media (max-width:420px){
+  .inner{padding:22px 18px 18px 18px}
+  h1{font-size:26px}
+}
+</style>
+</head>
+<body>
+  <div class="wrap">
+    <main class="card" aria-label="Landingpage Ruhe">
+      <div class="topbar"></div>
+      <div class="inner">
+        <div class="badge">Wartezimmer-Impulskarten</div>
+        <h1>Kurz durchatmen</h1>
+        <div class="sub">Ein ruhiger Moment für Ihre Wartezeit.</div>
+        <div class="duration">Dauer: ca. 2 Minuten</div>
+
+        <div class="section">
+          <h2>So geht’s</h2>
+          <ol>
+            <li>Stellen Sie beide Füße bewusst auf den Boden.</li>
+            <li>Lassen Sie die Schultern locker sinken.</li>
+            <li>Atmen Sie fünfmal langsam ein und aus.</li>
+            <li>Richten Sie Ihren Blick auf einen ruhigen Punkt im Raum.</li>
+            <li>Fragen Sie sich zum Schluss: <strong>Fühle ich mich jetzt etwas ruhiger?</strong></li>
+          </ol>
+        </div>
+
+        <div class="note">
+          Ein kleiner Moment genügt. Es geht nicht darum, etwas perfekt zu machen —
+          nur darum, kurz anzukommen.
+        </div>
+
+        <div class="actions">
+          <button id="newPromptBtn">Weiteren ruhigen Impuls anzeigen</button>
+          <a class="secondary" href="#" onclick="window.history.back(); return false;">Zurück</a>
+        </div>
+
+        <div class="section" id="extraPrompt" style="display:none;">
+          <h2>Zusätzlicher Impuls</h2>
+          <div class="prompt" id="promptText"></div>
+          <div class="small">Nehmen Sie sich dafür nur einen kurzen Augenblick.</div>
+        </div>
+
+        <div class="footer">
+          Wartezimmer-Impulskarten · Kleine Impulse für eine angenehmere Wartezeit
+        </div>
+      </div>
+    </main>
+  </div>
+
+  <script>
+    const prompts = [
+      "Lassen Sie beim nächsten Ausatmen bewusst den Kiefer locker.",
+      "Spüren Sie für 20 Sekunden den Kontakt Ihrer Füße mit dem Boden.",
+      "Atmen Sie einmal tiefer ein als sonst und lassen Sie langsam wieder los.",
+      "Richten Sie Ihre Aufmerksamkeit kurz nur auf Ihren Atem.",
+      "Entspannen Sie bewusst Stirn, Schultern und Hände."
+    ];
+    const btn = document.getElementById('newPromptBtn');
+    const box = document.getElementById('extraPrompt');
+    const text = document.getElementById('promptText');
+    btn.addEventListener('click', () => {
+      const random = prompts[Math.floor(Math.random() * prompts.length)];
+      text.textContent = random;
+      box.style.display = 'block';
+      box.scrollIntoView({behavior:'smooth', block:'nearest'});
+    });
+  </script>
+</body>
+</html>

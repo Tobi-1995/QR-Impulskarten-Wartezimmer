@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Kurz ordnen</title>
+  <style>
+:root{
+  --bg:#f7f5f1;
+  --card:#ffffff;
+  --text:#252a2f;
+  --muted:#6b7280;
+  --accent:#3f6f8c;
+  --accent-soft:#e8f0f5;
+  --sage:#e6efe9;
+  --sand:#efe7db;
+  --border:#dde3e8;
+  --button:#2f5f7b;
+  --button-text:#ffffff;
+}
+*{box-sizing:border-box}
+html,body{margin:0;padding:0}
+body{
+  font-family: Arial, Helvetica, sans-serif;
+  background: linear-gradient(180deg, var(--bg) 0%, #f2f4f6 100%);
+  color:var(--text);
+  line-height:1.5;
+}
+.wrap{
+  min-height:100vh;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  padding:24px;
+}
+.card{
+  width:100%;
+  max-width:520px;
+  background:var(--card);
+  border:1px solid var(--border);
+  border-radius:24px;
+  box-shadow:0 10px 30px rgba(0,0,0,0.06);
+  overflow:hidden;
+}
+.topbar{height:10px;background:var(--accent);}
+.inner{padding:28px 24px 22px 24px}
+.badge{
+  display:inline-block;
+  background:var(--accent-soft);
+  color:var(--accent);
+  font-weight:700;
+  font-size:12px;
+  letter-spacing:.04em;
+  text-transform:uppercase;
+  padding:8px 10px;
+  border-radius:999px;
+  margin-bottom:16px;
+}
+h1{
+  margin:0 0 8px 0;
+  font-size:30px;
+  line-height:1.15;
+}
+.sub{
+  color:var(--muted);
+  font-size:16px;
+  margin-bottom:18px;
+}
+.duration{
+  display:inline-block;
+  padding:8px 12px;
+  background:#f7fafc;
+  border:1px solid var(--border);
+  border-radius:12px;
+  font-size:14px;
+  color:var(--muted);
+  margin-bottom:20px;
+}
+.section{
+  background:#fafafa;
+  border:1px solid var(--border);
+  border-radius:18px;
+  padding:16px;
+  margin:14px 0;
+}
+.section h2{
+  margin:0 0 10px 0;
+  font-size:18px;
+  color:var(--accent);
+}
+ol,ul{
+  margin:10px 0 0 20px;
+  padding:0;
+}
+li{margin:8px 0}
+.prompt{
+  font-size:18px;
+  font-weight:700;
+  margin:10px 0;
+}
+.note{
+  margin-top:14px;
+  padding:14px 16px;
+  border-radius:16px;
+  background:var(--sand);
+  font-size:15px;
+}
+.actions{
+  display:flex;
+  flex-direction:column;
+  gap:12px;
+  margin-top:18px;
+}
+button, .secondary{
+  appearance:none;
+  border:none;
+  width:100%;
+  border-radius:16px;
+  padding:15px 16px;
+  font-size:16px;
+  font-weight:700;
+  cursor:pointer;
+}
+button{
+  background:var(--button);
+  color:var(--button-text);
+}
+.secondary{
+  background:#fff;
+  color:var(--accent);
+  border:1px solid var(--border);
+  text-align:center;
+  text-decoration:none;
+}
+.footer{
+  text-align:center;
+  color:var(--muted);
+  font-size:13px;
+  margin-top:18px;
+}
+.small{
+  font-size:14px;
+  color:var(--muted);
+}
+.choice{
+  display:block;
+  width:100%;
+  text-align:left;
+  background:#fff;
+  color:var(--text);
+  border:1px solid var(--border);
+  margin:10px 0;
+  font-weight:600;
+}
+.choice.active{
+  border-color:var(--accent);
+  background:var(--accent-soft);
+}
+hr{
+  border:none;
+  border-top:1px solid var(--border);
+  margin:16px 0;
+}
+textarea{
+  width:100%;
+  margin-top:12px;
+  border:1px solid var(--border);
+  border-radius:14px;
+  padding:12px;
+  font:inherit;
+  resize:vertical;
+}
+@media (max-width:420px){
+  .inner{padding:22px 18px 18px 18px}
+  h1{font-size:26px}
+}
+</style>
+</head>
+<body>
+  <div class="wrap">
+    <main class="card" aria-label="Landingpage Sanfte Produktivität">
+      <div class="topbar"></div>
+      <div class="inner">
+        <div class="badge">Wartezimmer-Impulskarten</div>
+        <h1>Kurz ordnen</h1>
+        <div class="sub">Ein kleiner hilfreicher Impuls für Ihre Wartezeit.</div>
+        <div class="duration">Dauer: ca. 2 Minuten</div>
+
+        <div class="section">
+          <h2>Wählen Sie eine Mini-Aufgabe</h2>
+          <button class="choice" data-task="Was möchte ich heute nicht vergessen?">Was möchte ich heute nicht vergessen?</button>
+          <button class="choice" data-task="Welche eine Sache ist heute wirklich wichtig?">Welche eine Sache ist heute wirklich wichtig?</button>
+          <button class="choice" data-task="Was ist mein nächster sinnvoller Schritt?">Was ist mein nächster sinnvoller Schritt?</button>
+        </div>
+
+        <div class="section" id="taskBox" style="display:none;">
+          <h2>Ihre Mini-Aufgabe</h2>
+          <div class="prompt" id="taskText"></div>
+          <textarea id="noteField" rows="5" placeholder="Wenn Sie möchten, können Sie hier einen kurzen Gedanken notieren."></textarea>
+          <div class="small" style="margin-top:8px;">Nur eine Sache genügt. Mehr muss es nicht sein.</div>
+        </div>
+
+        <div class="actions">
+          <button id="saveBtn">Gedanken im Browser speichern</button>
+          <a class="secondary" href="#" onclick="window.history.back(); return false;">Zurück</a>
+        </div>
+
+        <div class="note" id="saveMsg" style="display:none;">
+          Ihr Eintrag wurde auf diesem Gerät im Browser gespeichert.
+        </div>
+
+        <div class="footer">
+          Wartezimmer-Impulskarten · Kleine Impulse für eine angenehmere Wartezeit
+        </div>
+      </div>
+    </main>
+  </div>
+
+  <script>
+    const buttons = document.querySelectorAll('.choice');
+    const box = document.getElementById('taskBox');
+    const taskText = document.getElementById('taskText');
+    const noteField = document.getElementById('noteField');
+    const saveBtn = document.getElementById('saveBtn');
+    const saveMsg = document.getElementById('saveMsg');
+    const storageKey = 'wartezimmer-impulskarten-notiz';
+
+    function setTask(text) {
+      buttons.forEach(btn => btn.classList.toggle('active', btn.dataset.task === text));
+      taskText.textContent = text;
+      box.style.display = 'block';
+    }
+
+    buttons.forEach(btn => {
+      btn.addEventListener('click', () => setTask(btn.dataset.task));
+    });
+
+    const saved = localStorage.getItem(storageKey);
+    if (saved) noteField.value = saved;
+
+    saveBtn.addEventListener('click', () => {
+      localStorage.setItem(storageKey, noteField.value);
+      saveMsg.style.display = 'block';
+      saveMsg.scrollIntoView({behavior:'smooth', block:'nearest'});
+    });
+  </script>
+</body>
+</html>
